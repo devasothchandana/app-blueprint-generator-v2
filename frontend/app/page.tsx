@@ -33,14 +33,25 @@ export default function Home() {
   ];
 
   const getTabData = () => {
-    if (!result) return null;
-    switch (activeTab) {
-      case 'intent': return result.stage1_intent;
-      case 'design': return result.stage2_design;
-      case 'schemas': return result.stage3_schemas;
-      case 'validation': return result.stage4_validation;
-    }
-  };
+  if (!result) return null;
+
+  switch (activeTab) {
+    case 'intent':
+      return result?.stage1_intent;
+
+    case 'design':
+      return result?.stage2_design;
+
+    case 'schemas':
+      return result?.stage3_schemas;
+
+    case 'validation':
+      return result?.stage4_validation;
+
+    default:
+      return null;
+  }
+};
 
   return (
     <main className="min-h-screen bg-gray-950 text-white p-8">
