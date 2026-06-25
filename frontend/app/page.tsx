@@ -16,7 +16,7 @@ export default function Home() {
     setResult(null);
 
     try {
-      const res = await axios.post('http://localhost:5000/api/generate', { prompt });
+      const res = await axios.post('https://app-blueprint-generator.onrender.com/api/generate', { prompt });
       setResult(res.data.pipeline);
     } catch (err : any) {
       setError(err.response?.data?.error || 'Something went wrong');
@@ -33,25 +33,25 @@ export default function Home() {
   ];
 
   const getTabData = () => {
-  if (!result) return null;
+    if (!result) return null;
 
-  switch (activeTab) {
-    case 'intent':
-      return result?.stage1_intent;
+    switch (activeTab) {
+      case 'intent':
+        return result?.stage1_intent;
 
-    case 'design':
-      return result?.stage2_design;
+      case 'design':
+        return result?.stage2_design;
 
-    case 'schemas':
-      return result?.stage3_schemas;
+      case 'schemas':
+        return result?.stage3_schemas;
 
-    case 'validation':
-      return result?.stage4_validation;
+      case 'validation':
+        return result?.stage4_validation;
 
-    default:
-      return null;
-  }
-};
+      default:
+        return null;
+    }
+  };
 
   return (
     <main className="min-h-screen bg-gray-950 text-white p-8">
@@ -88,7 +88,9 @@ export default function Home() {
         {/* Loading */}
         {loading && (
           <div className="bg-gray-900 rounded-xl p-6 mb-6">
-            <p className="text-purple-400 font-semibold mb-4">🔄 Pipeline Running...</p>
+            <p className="text-purple-400 font-semibold mb-4">
+              🔄 Pipeline Running...
+            </p>
             <div className="space-y-2 text-sm text-gray-400">
               <p>⚙️ Stage 1: Extracting intent...</p>
               <p>⚙️ Stage 2: Designing system...</p>
